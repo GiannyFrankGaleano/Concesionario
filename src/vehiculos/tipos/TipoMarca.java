@@ -1,6 +1,6 @@
 package vehiculos.tipos;
 
-public enum tipoMarca {
+public enum TipoMarca {
     CHEVROLET,
     FORD,
     PORCHE,
