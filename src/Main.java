@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+    menuPrincipal();
         generarEmpleados();
     }
 
@@ -62,8 +62,13 @@ public class Main {
         switch (opcion) {
 
             case 1:
+                ventaVehiculo();
+                menuPrincipal();
                 break;
             case 2:
+                IngresarVehiculo();
+                mostrarTodosLosVehiculos();
+                menuPrincipal();
                 break;
             case 3:
                 break;
@@ -179,5 +184,14 @@ public class Main {
             elegirMarcaVehiculo();
         }
         return NewMarca;
+    }
+
+    private static void mostrarTodosLosVehiculos(){
+        String mensaje = "";
+        for (Vehiculo vehiculo: vehiculos){
+            mensaje = mensaje + vehiculo.getColor()+"\n"+ vehiculo.getMatricula() +"\n"+ vehiculo.getMarca() +"\n"+ vehiculo.getModelo()+"\n";
+        }
+        JOptionPane.showMessageDialog(null,mensaje);
+
     }
 }
