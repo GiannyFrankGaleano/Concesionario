@@ -2,8 +2,10 @@ import personas.Empleado;
 import personas.tipos.tipoDocumento;
 import personas.tipos.tipoPermiso;
 import vehiculos.Particular;
+import vehiculos.Publico;
 import vehiculos.Vehiculo;
 import vehiculos.tipos.TipoMarca;
+import vehiculos.tipos.TipoPublico;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -84,21 +86,64 @@ public class Main {
     }
 
     private static void IngresarVehiculo() {
-        TipoMarca marca;
-        int modelo;
-        int precio;
-        String matricula;
-        String color;
+
 
         if (preguntaVehiculo()){
-            Particular particular = new Particular(TipoMarca.BENTLEY, 2021, 400000000, "OMG007", "Negro");
+            Particular particular = new Particular(
+            elegirMarcaVehiculo(),
+                    Integer.parseInt(JOptionPane.showInputDialog("ingrese el modelo")),
+                    Integer.parseInt(JOptionPane.showInputDialog("ingrese el precio")),
+            JOptionPane.showInputDialog("Ingrese la placa"),
+            JOptionPane.showInputDialog("ingrese el color")
+
+            );
+            vehiculos.add(particular);
+        }else {
+            Publico newPublico = new Publico(
+                    elegirMarcaVehiculo(),
+                    Integer.parseInt(JOptionPane.showInputDialog("ingrese el modelo")),
+                    Integer.parseInt(JOptionPane.showInputDialog("ingrese el precio")),
+                    JOptionPane.showInputDialog("Ingrese la placa"),
+                    JOptionPane.showInputDialog("ingrese el color")
+
+            );
+
+            newPublico.setNumeroPlanilla(
+                    Integer.parseInt(JOptionPane.showInputDialog("ingrese el numero de planilla"))
+            );
+
+            newPublico.setTipoPublico(
+                    elegirTipoPublico()
+            );
+                 vehiculos.add(newPublico);
         }
+
     }
 
     private static boolean preguntaVehiculo() {
         int tipo = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de vehiculo desea?\n"
                 + "1. particular\n" + "2. Publico"));
         return tipo == 1;
+    }
+
+    private static TipoPublico elegirTipoPublico(){
+        int tipo = Integer.parseInt(JOptionPane.showInputDialog("Que tipo de vehiculo desea?\n"
+                + "1. Taxi\n" + "2. Bus"));
+
+        TipoPublico newTipo = null;
+        switch (tipo){
+
+            case 1:
+                newTipo = TipoPublico.TAXI;
+                break;
+            case 2:
+                newTipo = TipoPublico.BUS;
+              break;
+            default:
+                JOptionPane.showMessageDialog(null,"Opcion no valida","ERROR",JOptionPane.ERROR_MESSAGE);
+                elegirTipoPublico();
+        }
+        return newTipo;
     }
 
     private static TipoMarca elegirMarcaVehiculo() {
