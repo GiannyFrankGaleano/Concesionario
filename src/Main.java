@@ -63,6 +63,7 @@ public class Main {
 
             case 1:
                 ventaVehiculo();
+                mostrarVehiculosParticulares();
                 menuPrincipal();
                 break;
             case 2:
@@ -71,6 +72,7 @@ public class Main {
                 menuPrincipal();
                 break;
             case 3:
+                System.exit(0);
                 break;
 
             default:
@@ -82,10 +84,15 @@ public class Main {
         if (vehiculos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error; no hay vehiculos en la lista", "VEHICULOS NO DISPONIBLES", JOptionPane.ERROR_MESSAGE);
 
-
+        menuPrincipal();
 
         } else {
+    if (preguntaVehiculo()){
 
+
+    }else{
+
+    }
         }
 
     }
@@ -193,5 +200,20 @@ public class Main {
         }
         JOptionPane.showMessageDialog(null,mensaje);
 
+    }
+
+    private static int mostrarVehiculosParticulares(){
+        int indice = 0;
+
+        String mensaje = "";
+        for (int i = 0; i < vehiculos.size(); i++){
+
+            if (vehiculos.get(i)instanceof Particular){
+
+                mensaje= mensaje + vehiculos.get(i).getModelo()+"\n"+ vehiculos.get(i).getColor() +"\n"+ vehiculos.get(i).getMatricula() +"\n"+ vehiculos.get(i).getPrecio()+"\n";
+            }
+        }
+        indice = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+        return indice;
     }
 }
