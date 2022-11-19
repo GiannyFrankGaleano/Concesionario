@@ -80,6 +80,15 @@ public class Main {
     }
 
     private static void ventaVehiculo() {
+        for (int i = 0; i < vehiculos.size(); i++){
+
+            if (vehiculos.get(i)instanceof Particular){
+                if (i<0){
+                    JOptionPane.showMessageDialog(null, "Error; no hay vehiculos en la lista", "VEHICULOS NO DISPONIBLES", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+        }
 
         if (vehiculos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error; no hay vehiculos en la lista", "VEHICULOS NO DISPONIBLES", JOptionPane.ERROR_MESSAGE);
@@ -88,14 +97,18 @@ public class Main {
 
         } else {
     if (preguntaVehiculo()){
-
+    int vehi = mostrarVehiculosParticulares();
+    vehiculos.remove(vehi);
+    mostrarTodosLosVehiculos();
 
     }else{
+
 
     }
         }
 
     }
+
 
     private static void IngresarVehiculo() {
 
@@ -210,7 +223,7 @@ public class Main {
 
             if (vehiculos.get(i)instanceof Particular){
 
-                mensaje= mensaje + vehiculos.get(i).getModelo()+"\n"+ vehiculos.get(i).getColor() +"\n"+ vehiculos.get(i).getMatricula() +"\n"+ vehiculos.get(i).getPrecio()+"\n";
+                mensaje= mensaje + vehiculos.get(i).getModelo()+"\n"+ vehiculos.get(i).getMarca() +"\n"+ vehiculos.get(i).getMatricula() +"\n"+ vehiculos.get(i).getPrecio()+"\n";
             }
         }
         indice = Integer.parseInt(JOptionPane.showInputDialog(mensaje));
